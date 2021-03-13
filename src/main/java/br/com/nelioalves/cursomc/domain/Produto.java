@@ -1,5 +1,6 @@
 package br.com.nelioalves.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,7 +20,7 @@ public class Produto implements Serializable {
     private String nome;
     private Double preco;
 
-
+    @JsonBackReference // Do outro lado da associacao já foram referenciados, não preciso mais buscar.
     @ManyToMany
     @JoinTable(name = "PRODUTO_CATEGORIA",
             joinColumns = @JoinColumn(name = "produto_id"),

@@ -1,5 +1,6 @@
 package br.com.nelioalves.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,6 +18,8 @@ public class Categoria implements Serializable {
     private Integer id;
     private String nome;
 
+
+    @JsonManagedReference // Coloca onde vai mostrar os objetos associados
     @ManyToMany(mappedBy = "categorias")
     private List<Produto> produtos = new ArrayList<>();
 

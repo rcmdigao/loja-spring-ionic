@@ -1,7 +1,7 @@
 package br.com.nelioalves.cursomc.services;
 
 import br.com.nelioalves.cursomc.domain.Categoria;
-import br.com.nelioalves.cursomc.repositories.CaegoriaRepository;
+import br.com.nelioalves.cursomc.repositories.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.util.Optional;
 public class CategoriaService {
 
     @Autowired
-    private CaegoriaRepository repo;
+    private CategoriaRepository repo;
 
 
     public Categoria buscar(Integer id){

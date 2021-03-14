@@ -1,13 +1,8 @@
 package br.com.nelioalves.cursomc;
 
-import br.com.nelioalves.cursomc.domain.Categoria;
-import br.com.nelioalves.cursomc.domain.Cidade;
-import br.com.nelioalves.cursomc.domain.Estado;
-import br.com.nelioalves.cursomc.domain.Produto;
-import br.com.nelioalves.cursomc.repositories.CategoriaRepository;
-import br.com.nelioalves.cursomc.repositories.CidadeRepository;
-import br.com.nelioalves.cursomc.repositories.EstadoRepository;
-import br.com.nelioalves.cursomc.repositories.ProdutoRepository;
+import br.com.nelioalves.cursomc.domain.*;
+import br.com.nelioalves.cursomc.domain.enums.TipoCliente;
+import br.com.nelioalves.cursomc.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -26,6 +21,10 @@ public class CursomcApplication implements CommandLineRunner {
     private EstadoRepository estadoRepository;
     @Autowired
     private CidadeRepository cidadeRepository;
+    @Autowired
+    private ClienteRepository clienteRepository;
+    @Autowired
+    private EnderecoRepository enderecoRepository;
 
 
 
@@ -79,7 +78,6 @@ public class CursomcApplication implements CommandLineRunner {
         est2.setId(null);
         est2.setNome("São Paulo");
 
-
         Cidade cid1 = new Cidade();
         cid1.setId(null);
         cid1.setEstado(est1);
@@ -101,6 +99,38 @@ public class CursomcApplication implements CommandLineRunner {
         estadoRepository.saveAll(Arrays.asList(est1, est2));
         cidadeRepository.saveAll(Arrays.asList(cid1, cid2, cid3));
 
+        /*********************************************************/
+
+        Cliente cli1 = new Cliente();
+        cli1.setId(null);
+        cli1.setNome("Marina Matos");
+        cli1.setEmail("ninamatos@gmail.com");
+        cli1.setCpfOuCnpj("92985768282");
+        cli1.setTipo(TipoCliente.PESSOAFISICA.getCod());
+        cli1.getTelefones().addAll(Arrays.asList("33022013", "94948504"));
+
+        Endereco end1 = new Endereco();
+        end1.setId(null);
+        end1.setLogradouro("Recanto dos Nobres");
+        end1.setNumero("18");
+        end1.setComplemento("Conjunto B");
+        end1.setBairro("Sobradinho");
+        end1.setCidade(cid1);
+        end1.setCliente(cli1);
+
+        Endereco end2 = new Endereco();
+        end2.setId(null);
+        end2.setLogradouro("Imperio dos Nobres");
+        end2.setNumero("22");
+        end2.setComplemento("Conjunto E");
+        end2.setBairro("Sobradinho");
+        end2.setCidade(cid1);
+        end2.setCliente(cli1);
+
+        cli1.getEnderecos().addAll(Arrays.asList(end1, end2));
+
+        clienteRepository.saveAll(Arrays.asList(cli1));
+        enderecoRepository.saveAll(Arrays.asList(end1, end2));
 
     }
 }

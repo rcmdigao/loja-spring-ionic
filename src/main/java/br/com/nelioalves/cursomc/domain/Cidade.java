@@ -1,5 +1,6 @@
 package br.com.nelioalves.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ public class Cidade implements Serializable {
 
     private String nome;
 
+    @JsonManagedReference // Coloca onde vai mostrar os objetos associados (Json Ciclica)
     @ManyToOne
     @JoinColumn(name = "estado_id")
     private Estado estado;

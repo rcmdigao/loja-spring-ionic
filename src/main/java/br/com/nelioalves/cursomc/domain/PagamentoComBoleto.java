@@ -1,6 +1,5 @@
 package br.com.nelioalves.cursomc.domain;
 
-import br.com.nelioalves.cursomc.domain.enums.EstadoPagamento;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +16,7 @@ public class PagamentoComBoleto extends Pagamento {
     private Date dataVencimento;
     private Date dataPagamento;
 
-    public PagamentoComBoleto(Integer id, EstadoPagamento estado, Pedido pedido, Date dataVencimento, Date dataPagamento) {
+    public PagamentoComBoleto(Integer id, Integer estado, Pedido pedido, Date dataVencimento, Date dataPagamento) {
         super(id, estado, pedido); // Pegando da classe mae
         this.dataPagamento = dataPagamento;
         this.dataVencimento = dataVencimento;

@@ -1,7 +1,6 @@
 package br.com.nelioalves.cursomc.domain;
 
 
-import br.com.nelioalves.cursomc.domain.enums.EstadoPagamento;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +19,7 @@ public abstract class Pagamento implements Serializable {
 
     @Id
     private Integer id;
-    private EstadoPagamento estado;
+    private Integer estado;
 
     @OneToOne // mesmo id do pedido
     @JoinColumn(name = "pedido_id")
